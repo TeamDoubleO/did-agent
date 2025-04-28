@@ -1,6 +1,6 @@
 spring:
   application:
-    name: log-service
+    name: did-service
 
   config:
     import: optional:configserver:${CONFIG_SERVER_URL}

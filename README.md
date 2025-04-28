@@ -1,2 +1,2 @@
-# log-service
-출입 로그 관리 서비스
+# did-service
+DID 관리 서비스
