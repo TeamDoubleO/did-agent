@@ -38,5 +38,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: sunwoo11/keywe_did_service:latest
-          tags: sunwoo11/keywe_did_service:dev
+          tags: |
+            sunwoo11/keywe_did_service:latest
+            sunwoo11/keywe_did_service:dev
