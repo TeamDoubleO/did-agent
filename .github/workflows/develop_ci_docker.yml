@@ -39,3 +39,4 @@ jobs:
           context: .
           push: true
           tags: sunwoo11/keywe_did_service:latest
+          tags: sunwoo11/keywe_did_service:dev
