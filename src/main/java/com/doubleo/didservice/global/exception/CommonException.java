@@ -1,6 +1,6 @@
-package com.doubleo.logservice.global.exception;
+package com.doubleo.didservice.global.exception;
 
-import com.doubleo.logservice.global.exception.errorcode.BaseErrorCode;
+import com.doubleo.memberservice.global.exception.errorcode.BaseErrorCode;
 import lombok.Getter;
 
 @Getter

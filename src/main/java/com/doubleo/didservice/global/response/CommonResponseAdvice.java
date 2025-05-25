@@ -1,4 +1,4 @@
-package com.doubleo.logservice.global.response;
+package com.doubleo.didservice.global.response;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.core.MethodParameter;
