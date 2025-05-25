@@ -1,4 +1,4 @@
-package com.doubleo.didservice.global.config.swagger;
+package com.doubleo.didagent.global.config.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,7 +13,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("DID Service API") // 서비스 이름
+                                .title("DID Agent API") // 서비스 이름
                                 .description("DID API 명세서")
                                 .version("v1.0.0"));
     }

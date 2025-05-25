@@ -1,4 +1,4 @@
-package com.doubleo.didservice.global.response;
+package com.doubleo.didagent.global.response;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
