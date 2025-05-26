@@ -1,4 +1,4 @@
-package com.doubleo.logservice.global.exception.errorcode;
+package com.doubleo.didagent.global.exception.errorcode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum LogErrorCode implements BaseErrorCode {
-    LOG_NOT_FOUND(HttpStatus.NOT_FOUND, "출입로그 정보를 찾을 수 없습니다."),
+public enum GlobalErrorCode implements BaseErrorCode {
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버 오류입니다. 관리자에게 문의해주세요."),
     ;
 
     private final HttpStatus httpStatus;

@@ -1,4 +1,4 @@
-package com.doubleo.logservice.global.exception;
+package com.doubleo.didagent.global.exception;
 
 public record ErrorResponse(String errorClassName, String message) {
     public static ErrorResponse of(String errorClassName, String message) {

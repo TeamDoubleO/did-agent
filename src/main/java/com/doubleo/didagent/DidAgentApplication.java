@@ -1,12 +1,12 @@
-package com.doubleo.logservice;
+package com.doubleo.didagent;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LogServiceApplication {
+public class DidAgentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LogServiceApplication.class, args);
+        SpringApplication.run(DidAgentApplication.class, args);
     }
 }

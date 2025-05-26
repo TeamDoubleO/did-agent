@@ -1,8 +1,8 @@
-package com.doubleo.logservice.global.exception;
+package com.doubleo.didagent.global.exception;
 
-import com.doubleo.logservice.global.exception.errorcode.BaseErrorCode;
-import com.doubleo.logservice.global.exception.errorcode.GlobalErrorCode;
-import com.doubleo.logservice.global.response.CommonResponse;
+import com.doubleo.didagent.global.exception.errorcode.BaseErrorCode;
+import com.doubleo.didagent.global.exception.errorcode.GlobalErrorCode;
+import com.doubleo.didagent.global.response.CommonResponse;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

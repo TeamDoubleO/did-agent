@@ -39,5 +39,5 @@ jobs:
           context: .
           push: true
           tags: |
-            sunwoo11/keywe_did_service:latest
-            sunwoo11/keywe_did_service:dev
+            sunwoo11/keywe_did_agent:latest
+            sunwoo11/keywe_did_agent:dev

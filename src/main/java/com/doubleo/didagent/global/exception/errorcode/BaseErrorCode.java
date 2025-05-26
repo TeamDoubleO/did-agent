@@ -1,4 +1,4 @@
-package com.doubleo.logservice.global.exception.errorcode;
+package com.doubleo.didagent.global.exception.errorcode;
 
 import org.springframework.http.HttpStatus;
 
