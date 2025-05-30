@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 @AllArgsConstructor
 public enum DIDErrorCode implements BaseErrorCode {
-    SAMPLE_ERROR(HttpStatus.NOT_FOUND, "DID Agent API Sample Error"),
+    MALFORMED_PEER_DID(HttpStatus.NOT_FOUND, "잘못된 형식의 DID 입니다."),
     ;
 
     private final HttpStatus httpStatus;
