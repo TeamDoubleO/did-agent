@@ -18,7 +18,7 @@ public class DidController {
     private final DidService didService;
 
     @PostMapping
-    public DidCreateResponse didCreate(@Valid @RequestBody DidCreateRequest request)
+    public DidCreateResponse peer2DidCreate(@Valid @RequestBody DidCreateRequest request)
             throws Exception {
         return didService.createPeer2Did(request);
     }
