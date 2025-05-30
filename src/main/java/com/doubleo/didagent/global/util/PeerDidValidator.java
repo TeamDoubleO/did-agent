@@ -24,7 +24,6 @@ public class PeerDidValidator {
                 throw new CommonException(DIDErrorCode.MALFORMED_PEER_DID);
             }
 
-            // --- enc1 ---
             String enc1 = parts[0];
             if (!enc1.startsWith("V") || !enc1.substring(1).startsWith("z")) {
                 log.error("enc1 (V 접두사)가 올바르지 않습니다.");
@@ -32,7 +31,6 @@ public class PeerDidValidator {
             }
             Base58.decode(enc1.substring(2)); // 'Vz6...'
 
-            // --- enc2 ---
             String enc2 = parts[1];
             if (!enc2.startsWith("E") || !enc2.substring(1).startsWith("z")) {
                 log.error("enc2 (E 접두사)가 올바르지 않습니다.");
@@ -40,7 +38,6 @@ public class PeerDidValidator {
             }
             Base58.decode(enc2.substring(2)); // 'Ez6...'
 
-            // --- enc3 ---
             String enc3 = parts[2];
             if (!enc3.startsWith("S")) {
                 log.error("enc3 (S 접두사)가 없습니다.");
@@ -65,7 +62,7 @@ public class PeerDidValidator {
             log.info("peer did check completed");
 
         } catch (CommonException e) {
-            log.error("예외 발생: {}", e.getMessage());
+            log.error("exception: {}", e.getMessage());
             throw new CommonException(DIDErrorCode.MALFORMED_PEER_DID);
         }
     }
