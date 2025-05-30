@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.bitcoinj.core.Base58;
 
 public class Ed25519KeyGenerator {
-    /** JDK 17 Ed25519 키쌍을 생성해 raw + Base58 형식으로 리턴 */
+
     public static KeyMaterial generate() throws Exception {
 
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("Ed25519");

@@ -3,6 +3,7 @@ package com.doubleo.didagent.service;
 import com.doubleo.didagent.dto.request.DidCreateRequest;
 import com.doubleo.didagent.dto.response.DidCreateResponse;
 import com.doubleo.didagent.global.exception.CommonException;
+import com.doubleo.didagent.global.exception.errorcode.DidErrorCode;
 import com.doubleo.didagent.global.util.Ed25519KeyGenerator;
 import com.doubleo.didagent.global.util.KeyMaterial;
 import com.doubleo.didagent.global.util.PeerDidUtil;
@@ -28,7 +29,7 @@ public class DidService {
         try {
             return Ed25519KeyGenerator.generate();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CommonException(DidErrorCode.KEY_GENERATION_FAILED);
         }
     }
 }
