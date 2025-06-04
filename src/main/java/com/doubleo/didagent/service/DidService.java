@@ -23,7 +23,6 @@ public class DidService {
                         request.routingKeys(),
                         request.serviceEndpoint());
         log.info("Created PeerDid2: {}", peer2Did);
-        System.out.println(peer2Did);
         return new DidCreateResponse(
                 peer2Did,
                 key.signingKeyMb58(),
