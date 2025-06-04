@@ -1,6 +1,6 @@
 spring:
   application:
-    name: did-service
+    name: did-agent
 server:
   port: 8080
 management:
