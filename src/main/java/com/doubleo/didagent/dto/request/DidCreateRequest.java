@@ -1,5 +1,8 @@
 package com.doubleo.didagent.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.util.List;
 
-public record DidCreateRequest(@NotBlank String routingKey, @NotBlank String serviceEndpoint) {}
+public record DidCreateRequest(
+        @NotNull List<String> routingKeys, @NotBlank String serviceEndpoint) {}
