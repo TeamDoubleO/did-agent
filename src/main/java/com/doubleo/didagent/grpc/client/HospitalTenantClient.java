@@ -14,12 +14,7 @@ import org.springframework.stereotype.Component;
 public class HospitalTenantClient {
 
     @GrpcClient("tenant-service")
-    private final HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub;
-
-    public HospitalTenantClient(
-            HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub) {
-        this.blockingStub = blockingStub;
-    }
+    private HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub;
 
     public UpdateTokensResponse updateTokens(Map<String, String> tokens) {
         UpdateTokensRequest.Builder builder = UpdateTokensRequest.newBuilder();
