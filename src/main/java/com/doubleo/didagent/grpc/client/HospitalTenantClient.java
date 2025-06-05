@@ -16,7 +16,8 @@ public class HospitalTenantClient {
     @GrpcClient("tenant-service")
     private final HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub;
 
-    public HospitalTenantClient(HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub) {
+    public HospitalTenantClient(
+            HospitalTenantServiceGrpc.HospitalTenantServiceBlockingStub blockingStub) {
         this.blockingStub = blockingStub;
     }
 
