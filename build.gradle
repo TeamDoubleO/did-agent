@@ -22,6 +22,15 @@ configurations {
 
 repositories {
     mavenCentral()
+
+    maven {
+        name = 'GitHubPackages'
+        url  = uri('https://maven.pkg.github.com/TeamDoubleO/grpc-interfaces')
+        credentials {
+            username = System.getenv("GIT_USERNAME") ?: project.findProperty("gpr.user")
+            password = System.getenv("GIT_TOKEN") ?: project.findProperty("gpr.key")
+        }
+    }
 }
 
 ext {
@@ -49,6 +58,18 @@ dependencies {
     //did
     implementation 'org.bitcoinj:bitcoinj-core:0.15.10'
     implementation 'org.json:json:20240303'
+
+    // grpc interface
+    implementation "com.doubleo.grpc:tenant-interface:0.2.5"
+
+    // gRPC 런타임
+    implementation "io.grpc:grpc-netty:1.63.0"
+    implementation "io.grpc:grpc-protobuf:1.63.0"
+    implementation "io.grpc:grpc-stub:1.63.0"
+
+    // Spring Boot starter for gRPC 서버/클라이언트 자동설정
+    implementation 'com.google.protobuf:protobuf-java:3.24.4'
+    implementation 'net.devh:grpc-spring-boot-starter:3.1.0.RELEASE'
 
 
     annotationProcessor 'org.projectlombok:lombok'
