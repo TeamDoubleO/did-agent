@@ -24,11 +24,15 @@ public class Ed25519KeyGenerator {
 
         // Ed25519 Public Key 처리
         byte[] ed25519PubSpki = ed25519Kp.getPublic().getEncoded();
-        byte[] ed25519RawPub = Arrays.copyOfRange(ed25519PubSpki, ed25519PubSpki.length - 32, ed25519PubSpki.length);
+        byte[] ed25519RawPub =
+                Arrays.copyOfRange(
+                        ed25519PubSpki, ed25519PubSpki.length - 32, ed25519PubSpki.length);
 
         // Ed25519 Private Key 처리
         byte[] ed25519PrivPkcs8 = ed25519Kp.getPrivate().getEncoded();
-        byte[] ed25519RawPriv = Arrays.copyOfRange(ed25519PrivPkcs8, ed25519PrivPkcs8.length - 32, ed25519PrivPkcs8.length);
+        byte[] ed25519RawPriv =
+                Arrays.copyOfRange(
+                        ed25519PrivPkcs8, ed25519PrivPkcs8.length - 32, ed25519PrivPkcs8.length);
 
         // Ed25519 Public Key multicodec encoding (0xED 0x01)
         byte[] ed25519PubPrefixed = new byte[ed25519RawPub.length + 2];
@@ -83,18 +87,18 @@ public class Ed25519KeyGenerator {
         System.out.println("X25519 Private MB58: " + x25519PrivateKeyMb58);
 
         return new KeyMaterial(
-                ed25519RawPub,           // rawPub (Ed25519)
-                ed25519RawPriv,          // rawPriv (Ed25519)
-                ed25519PublicKeyBase58,  // signingKeyMb58 (Ed25519 public)
+                ed25519RawPub, // rawPub (Ed25519)
+                ed25519RawPriv, // rawPriv (Ed25519)
+                ed25519PublicKeyBase58, // signingKeyMb58 (Ed25519 public)
                 ed25519PrivateKeyBase58, // signingPrivBase58 (Ed25519 private)
-                x25519PublicKeyMb58,     // agreementKeyMb58 (X25519 public)
-                x25519PrivateKeyMb58     // x25519PrivateMb58 (X25519 private)
-        );
+                x25519PublicKeyMb58, // agreementKeyMb58 (X25519 public)
+                x25519PrivateKeyMb58 // x25519PrivateMb58 (X25519 private)
+                );
     }
 
     /**
-     * X25519 Public Key에서 원시 32바이트 추출
-     * SPKI 형식: 30 2A 30 05 06 03 2B 65 6E 03 21 00 [32바이트 public key]
+     * X25519 Public Key에서 원시 32바이트 추출 SPKI 형식: 30 2A 30 05 06 03 2B 65 6E 03 21 00 [32바이트 public
+     * key]
      */
     private static byte[] extractX25519PublicKey(byte[] encoded) {
         // SPKI 형식에서 마지막 32바이트가 실제 public key
@@ -104,10 +108,7 @@ public class Ed25519KeyGenerator {
         return Arrays.copyOfRange(encoded, encoded.length - 32, encoded.length);
     }
 
-    /**
-     * X25519 Private Key에서 원시 32바이트 추출
-     * PKCS#8 형식에서 실제 private key 데이터 추출
-     */
+    /** X25519 Private Key에서 원시 32바이트 추출 PKCS#8 형식에서 실제 private key 데이터 추출 */
     private static byte[] extractX25519PrivateKey(byte[] encoded) {
         // PKCS#8 형식 파싱
         // 30 2E 02 01 00 30 05 06 03 2B 65 6E 04 22 04 20 [32바이트 private key]
@@ -121,7 +122,10 @@ public class Ed25519KeyGenerator {
         // 하지만 더 정확한 파싱을 위해 OCTET STRING을 찾음
 
         for (int i = 0; i < encoded.length - 34; i++) {
-            if (encoded[i] == 0x04 && encoded[i + 1] == 0x22 && encoded[i + 2] == 0x04 && encoded[i + 3] == 0x20) {
+            if (encoded[i] == 0x04
+                    && encoded[i + 1] == 0x22
+                    && encoded[i + 2] == 0x04
+                    && encoded[i + 3] == 0x20) {
                 // 0x04 0x22 = OCTET STRING (34 bytes)
                 // 0x04 0x20 = OCTET STRING (32 bytes) - actual private key
                 return Arrays.copyOfRange(encoded, i + 4, i + 36);
@@ -132,9 +136,7 @@ public class Ed25519KeyGenerator {
         return Arrays.copyOfRange(encoded, encoded.length - 32, encoded.length);
     }
 
-    /**
-     * 바이트 배열을 hex 문자열로 변환
-     */
+    /** 바이트 배열을 hex 문자열로 변환 */
     private static String bytesToHex(byte[] bytes) {
         StringBuilder result = new StringBuilder();
         for (byte b : bytes) {
