@@ -19,14 +19,15 @@ public class PeerDidUtil {
         String enc2 = "E" + agreementKeyMb; // key-agreement key
         List<String> routingKeysDidUrl = PeerDidUtil.convertRoutingKeys(routingKeys);
         JSONObject svc = new JSONObject();
-        svc.put("id", "#didcomm-0");
-        svc.put("t", "did-communication");
-        svc.put("p", 0);
+
+        svc.put("type", "DIDComm");
+        svc.put("priority", 0);
+        svc.put("id", "#service-0");
         svc.put("recipientKeys", new JSONArray().put("#key-1"));
         if (routingKeys != null && !routingKeys.isEmpty()) {
-            svc.put("r", new JSONArray(routingKeysDidUrl)); // routingKeys → r
+            svc.put("routingKeys", new JSONArray(routingKeysDidUrl)); // routingKeys → r
         }
-        svc.put("s", serviceEndpoint); // serviceEndpoint → s
+        svc.put("serviceEndpoint", serviceEndpoint); // serviceEndpoint → s
 
         String enc3 =
                 "S"
@@ -45,7 +46,7 @@ public class PeerDidUtil {
         System.arraycopy(raw, 0, prefixed, 2, raw.length);
 
         String multibase = "z" + Base58.encode(prefixed);
-        return "did:key:" + multibase + "#" + multibase;
+        return "did:key:" + multibase;
     }
 
     private static List<String> convertRoutingKeys(List<String> rawKeys) {
