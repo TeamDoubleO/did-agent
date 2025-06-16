@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 public enum AcapyErrorCode implements BaseErrorCode {
     INVITATION_NOT_FOUND(HttpStatus.NOT_FOUND, "invitation 을 찾을 수 없습니다."),
     MEMBER_CONNECTION_NOT_FOUND(HttpStatus.NOT_FOUND, "member connection 을 찾을 수 없습니다."),
-    INVITATION_REQUEST_FAILED(HttpStatus.BAD_REQUEST, "invitation 생성 요청에 실패샜습니다"),
-    DID_PROCESS_FAILED(HttpStatus.BAD_REQUEST, "DID 생성 요청에 실패샜습니다"),
+    INVITATION_REQUEST_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "invitation 생성 요청에 실패샜습니다"),
+    DID_PROCESS_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "DID 생성 요청에 실패샜습니다"),
     ;
 
     private final HttpStatus httpStatus;
