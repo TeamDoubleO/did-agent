@@ -17,33 +17,41 @@ public class HospitalTenantClient {
 
     public UpdateTokensResponse updateTokens(Map<String, String> tokens) {
         UpdateTokensRequest.Builder builder = UpdateTokensRequest.newBuilder();
-
-        for (Map.Entry<String, String> entry : tokens.entrySet()) {
-            TenantWalletToken token =
-                    TenantWalletToken.newBuilder()
-                            .setTenantId(entry.getKey())
-                            .setWalletToken(entry.getValue())
-                            .build();
-            builder.addTokens(token);
+        try {
+            for (Map.Entry<String, String> entry : tokens.entrySet()) {
+                TenantWalletToken token =
+                        TenantWalletToken.newBuilder()
+                                .setTenantId(entry.getKey())
+                                .setWalletToken(entry.getValue())
+                                .build();
+                builder.addTokens(token);
+            }
+            return blockingStub.updateTokensByTenantId(builder.build());
+        } catch (StatusRuntimeException e) {
+            throw new StatusRuntimeException(
+                    Status.INTERNAL.withDescription(e.getMessage()).withCause(e));
         }
-
-        UpdateTokensRequest request = builder.build();
-
-        return blockingStub.updateTokensByTenantId(request);
     }
 
     public GetTokenResponse getTokenByTenantId(String tenantId) {
-        GetTokensRequest.Builder builder = GetTokensRequest.newBuilder();
-        GetTokensRequest request = builder.setTenantId(tenantId).build();
-        return blockingStub.getTokenByTenantId(request);
+        try {
+            return blockingStub.getTokenByTenantId(
+                    GetTokensRequest.newBuilder().setTenantId(tenantId).build());
+
+        } catch (StatusRuntimeException e) {
+            throw new StatusRuntimeException(
+                    Status.INTERNAL.withDescription(e.getMessage()).withCause(e));
+        }
     }
 
     public String getTenantIdByHospitalId(Long hospitalId) {
 
         try {
-            HospitalIdToTenantIdRequest request =
-                    HospitalIdToTenantIdRequest.newBuilder().setHospitalId(hospitalId).build();
-            HospitalIdToTenantIdResponse response = blockingStub.getTenantIdByHospitalId(request);
+            HospitalIdToTenantIdResponse response =
+                    blockingStub.getTenantIdByHospitalId(
+                            HospitalIdToTenantIdRequest.newBuilder()
+                                    .setHospitalId(hospitalId)
+                                    .build());
             return response.getTenantId();
         } catch (Exception e) {
             throw new StatusRuntimeException(
