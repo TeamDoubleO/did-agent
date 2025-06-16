@@ -1,7 +1,7 @@
 package com.doubleo.didagent.service;
 
-import com.doubleo.didagent.dto.request.DidCreateRequest;
-import com.doubleo.didagent.dto.response.DidCreateResponse;
+import com.doubleo.didagent.dto.request.did.DidCreateRequest;
+import com.doubleo.didagent.dto.response.did.DidCreateResponse;
 import com.doubleo.didagent.global.exception.CommonException;
 import com.doubleo.didagent.global.exception.errorcode.DidErrorCode;
 import com.doubleo.didagent.global.util.Ed25519KeyGenerator;
