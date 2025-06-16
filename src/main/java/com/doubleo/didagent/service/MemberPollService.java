@@ -35,18 +35,12 @@ public class MemberPollService {
 
     @Transactional(readOnly = true)
     public InvitationInfoResponse getHospitalInvitation(HospitalInvitationInfoRequest request) {
-        System.out.println(request.hospitalId());
-        System.out.println(request.passId());
+        log.info("Get hospital invitation for {}", request);
         String tenantId = hospitalTenantClient.getTenantIdByHospitalId(request.hospitalId());
         return new InvitationInfoResponse(getHospitalInvitationUrl(request.passId(), tenantId));
     }
 
     private String getHospitalInvitationUrl(Long passId, String tenantId) {
-        System.out.println(
-                hospitalInvitationRepository
-                        .findHospitalInvitationByPassIdAndTenantId(String.valueOf(passId), tenantId)
-                        .orElseThrow(
-                                () -> new CommonException(AcapyErrorCode.INVITATION_NOT_FOUND)));
         return hospitalInvitationRepository
                 .findHospitalInvitationByPassIdAndTenantId(String.valueOf(passId), tenantId)
                 .orElseThrow(() -> new CommonException(AcapyErrorCode.INVITATION_NOT_FOUND))
