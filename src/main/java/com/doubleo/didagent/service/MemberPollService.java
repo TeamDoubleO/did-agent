@@ -20,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class MemberPollService {
 
-    private String tenantId = "test-tenant-1";
-
     private final MediatorAgent mediatorAgent;
     private final HospitalInvitationRepository hospitalInvitationRepository;
     private final HospitalTenantClient hospitalTenantClient;
@@ -39,8 +37,7 @@ public class MemberPollService {
     public InvitationInfoResponse getHospitalInvitation(HospitalInvitationInfoRequest request) {
         System.out.println(request.hospitalId());
         System.out.println(request.passId());
-        //        String tenantId =
-        // hospitalTenantClient.getTenantIdByHospitalId(request.hospitalId());
+        String tenantId = hospitalTenantClient.getTenantIdByHospitalId(request.hospitalId());
         return new InvitationInfoResponse(getHospitalInvitationUrl(request.passId(), tenantId));
     }
 
