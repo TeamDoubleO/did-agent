@@ -116,7 +116,7 @@ public class AcapyWebhookService {
                 .flatMap(
                         invitation -> {
                             String connectionId = (String) payload.get("connection_id");
-                            System.out.println("connectionId: " + connectionId);
+                            log.debug("connectionId: {}", connectionId);
 
                             MemberConnection connection =
                                     MemberConnection.createMemberConnection(
