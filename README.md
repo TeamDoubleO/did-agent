@@ -1,2 +1,2 @@
-# did-service
-DID 관리 서비스
+# did-agent
+ACAPY 핸들링 에이전트
