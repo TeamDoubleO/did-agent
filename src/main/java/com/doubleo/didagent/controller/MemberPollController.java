@@ -16,12 +16,12 @@ public class MemberPollController {
     private final MemberPollService memberPollService;
 
     @GetMapping("/mediator-invitation")
-    public InvitationInfoResponse getMediatorInvitationInfo() {
+    public InvitationInfoResponse mediatorInvitationInfoGet() {
         return memberPollService.getMediatorInvitation();
     }
 
     @PostMapping("/hospital-invitation")
-    public InvitationInfoResponse getHospitalInvitationInfo(
+    public InvitationInfoResponse hospitalInvitationInfoGet(
             @RequestBody HospitalInvitationInfoRequest request) {
         return memberPollService.getHospitalInvitation(request);
     }
