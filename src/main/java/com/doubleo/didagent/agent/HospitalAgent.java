@@ -79,7 +79,7 @@ public class HospitalAgent {
 
     public Mono<HospitalVcIssueResponse> issueHospitalVc(
             HospitalVcIssueRequest request, String token) {
-        System.out.println(acapyProperties.issueVc());
+        log.debug("Issue VC endpoint: {}", acapyProperties.issueVc());
         Mono<HospitalVcIssueResponse> res =
                 hospitalClient
                         .getWebClient()
