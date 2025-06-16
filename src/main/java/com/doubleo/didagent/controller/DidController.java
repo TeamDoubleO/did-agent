@@ -1,7 +1,7 @@
 package com.doubleo.didagent.controller;
 
-import com.doubleo.didagent.dto.request.DidCreateRequest;
-import com.doubleo.didagent.dto.response.DidCreateResponse;
+import com.doubleo.didagent.dto.request.did.DidCreateRequest;
+import com.doubleo.didagent.dto.response.did.DidCreateResponse;
 import com.doubleo.didagent.service.DidService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

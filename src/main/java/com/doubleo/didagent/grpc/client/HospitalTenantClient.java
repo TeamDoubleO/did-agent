@@ -1,9 +1,8 @@
 package com.doubleo.didagent.grpc.client;
 
-import com.doubleo.tenantservice.domain.tenant.grpc.HospitalTenantServiceGrpc;
-import com.doubleo.tenantservice.domain.tenant.grpc.TenantWalletToken;
-import com.doubleo.tenantservice.domain.tenant.grpc.UpdateTokensRequest;
-import com.doubleo.tenantservice.domain.tenant.grpc.UpdateTokensResponse;
+import com.doubleo.tenantservice.domain.tenant.grpc.*;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -18,18 +17,45 @@ public class HospitalTenantClient {
 
     public UpdateTokensResponse updateTokens(Map<String, String> tokens) {
         UpdateTokensRequest.Builder builder = UpdateTokensRequest.newBuilder();
-
-        for (Map.Entry<String, String> entry : tokens.entrySet()) {
-            TenantWalletToken token =
-                    TenantWalletToken.newBuilder()
-                            .setTenantId(entry.getKey())
-                            .setWalletToken(entry.getValue())
-                            .build();
-            builder.addTokens(token);
+        try {
+            for (Map.Entry<String, String> entry : tokens.entrySet()) {
+                TenantWalletToken token =
+                        TenantWalletToken.newBuilder()
+                                .setTenantId(entry.getKey())
+                                .setWalletToken(entry.getValue())
+                                .build();
+                builder.addTokens(token);
+            }
+            return blockingStub.updateTokensByTenantId(builder.build());
+        } catch (StatusRuntimeException e) {
+            throw new StatusRuntimeException(
+                    Status.INTERNAL.withDescription(e.getMessage()).withCause(e));
         }
+    }
 
-        UpdateTokensRequest request = builder.build();
+    public GetTokenResponse getTokenByTenantId(String tenantId) {
+        try {
+            return blockingStub.getTokenByTenantId(
+                    GetTokensRequest.newBuilder().setTenantId(tenantId).build());
 
-        return blockingStub.updateTokensByTenantId(request);
+        } catch (StatusRuntimeException e) {
+            throw new StatusRuntimeException(
+                    Status.INTERNAL.withDescription(e.getMessage()).withCause(e));
+        }
+    }
+
+    public String getTenantIdByHospitalId(Long hospitalId) {
+
+        try {
+            HospitalIdToTenantIdResponse response =
+                    blockingStub.getTenantIdByHospitalId(
+                            HospitalIdToTenantIdRequest.newBuilder()
+                                    .setHospitalId(hospitalId)
+                                    .build());
+            return response.getTenantId();
+        } catch (Exception e) {
+            throw new StatusRuntimeException(
+                    Status.INTERNAL.withDescription(e.getMessage()).withCause(e));
+        }
     }
 }
