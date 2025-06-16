@@ -94,7 +94,9 @@ public class HospitalAgent {
                                 error -> {
                                     log.error("Hospital VC Issuance error: {}", error.getMessage());
                                 })
-                        .doOnNext(response -> log.info("Hospital VC Issuance response: {}", response));
+                        .doOnNext(
+                                response ->
+                                        log.info("Hospital VC Issuance response: {}", response));
         return res;
     }
 }
