@@ -47,7 +47,7 @@ public class AcapyWebhookService {
                 walletId);
 
         if (state.equals("active")) {
-            System.out.println("??");
+            log.debug("State is active. Initiating member connection and processing further steps.");
             return initMemberConnection(payload)
                     .then(createAndPostDid(connectionId))
                     .flatMap(did -> offerVc(connectionId, did, theirDid))
