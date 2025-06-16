@@ -22,7 +22,7 @@ public class HospitalAgent {
 
     public Mono<HospitalInvitationCreateResponse> createHospitalInvitation(
             HospitalInvitationCreateRequest request, String token) {
-        System.out.println(acapyProperties.createInvitation());
+        log.debug("Creating hospital invitation with path: {}", acapyProperties.createInvitation());
         return hospitalClient
                 .getWebClient()
                 .post()
