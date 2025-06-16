@@ -63,8 +63,9 @@ dependencies {
     implementation 'org.json:json:20240303'
 
     // grpc interface
-    implementation "com.doubleo.grpc:tenant-interface:0.2.9"
-    implementation "com.doubleo.grpc:acapy-interface:0.2.9"
+    implementation "com.doubleo.grpc:tenant-interface:0.3.3"
+    implementation "com.doubleo.grpc:acapy-interface:0.3.3"
+    implementation "com.doubleo.grpc:pass-interface:0.3.3"
 
     // gRPC 런타임
     implementation "io.grpc:grpc-netty:1.63.0"
