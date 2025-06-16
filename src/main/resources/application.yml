@@ -1,6 +1,17 @@
 spring:
   application:
     name: did-agent
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+  task:
+    execution:
+      pool:
+        core-size: 10
+        max-size: 20
+        queue-capacity: 100
 server:
   port: 8080
 management:
